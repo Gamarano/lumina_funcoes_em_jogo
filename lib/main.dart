@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'services/supabase_service.dart';
 import 'screens/home_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // Carregar variáveis de ambiente
+  await dotenv.load(fileName: '.env');
+  
+  // Inicializar Supabase
+  await SupabaseService().initialize();
+  
   runApp(const MyApp());
 }
 
